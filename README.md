@@ -76,9 +76,10 @@ MIT
 
 ## Naming
 
-Well, not so surpsising
+Well, given the scope it is not so surprising
 
 * Postman - https://www.getpostman.com/ impressive and well designed tool, however closed source and requires registration
-* Postwoman.io - https://postwoman.io nice online tool, can generate XHR, Fetch and curl, however I do preffer CLI tools - at also don't escape parameters
+* Postwoman.io - https://postwoman.io nice online tool, can generate XHR, Fetch and curl, however I like CLI tools more
 
-So in between Postman and Postwoman, there is a place for Postkid - small simple easy to work with command line tool without Electron based bells & whistles.
+So Postkid sits in between Postman and Postwoman - small simple easy to work
+with command line tool without Electron based bells & whistles.
