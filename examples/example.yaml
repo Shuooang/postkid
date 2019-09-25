@@ -1,0 +1,19 @@
+method: POST
+host: https://example.com
+path: matomo.php
+query:
+    _cvar: '{"1":["OS","iphone 5.0"],"2":["Matomo Mobile Version","1.6.2"],"3":["Locale","en::en"],"4":["Num Accounts","2"]}'
+    action_name: View settings
+    url: http://mobileapp.piwik.org/window/settings
+    idsite: 8876
+header:
+    Origin: http://example.com
+    Content-Type: application/json
+body: |
+    {
+        "some": {
+            "nested" : {
+                "json": "string"
+                }
+            }
+        }
