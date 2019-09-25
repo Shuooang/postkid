@@ -1,0 +1,7 @@
+method: GET
+host: http://example.com
+path: path
+query:
+    foo: bar
+header:
+    ham: spam

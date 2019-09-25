@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"log"
@@ -10,10 +11,12 @@ import (
 
 var (
 	verbose bool
+	runCurl bool
 )
 
 func init() {
 	flag.BoolVar(&verbose, "verbose", false, "be verbose")
+	flag.BoolVar(&runCurl, "run-curl", false, "execute the command line in curl")
 }
 
 func processFiles(files []string) {
@@ -22,7 +25,21 @@ func processFiles(files []string) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf(builder.Curl(&req))
+		if !runCurl {
+			fmt.Printf(builder.Curl(&req))
+		} else {
+			cmd := builder.CurlCmd(&req)
+			var out bytes.Buffer
+			var sterr bytes.Buffer
+			cmd.Stdout = &out
+			cmd.Stderr = &sterr
+			err := cmd.Run()
+			if err != nil {
+                log.Printf("curl failed, stderr:\n%s", string(sterr.Bytes()))
+				log.Fatal(err)
+			}
+            fmt.Println(string(out.Bytes()))
+		}
 	}
 }
 

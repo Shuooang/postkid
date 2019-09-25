@@ -1,0 +1,8 @@
+method: GET
+host: https://httpbin.org
+path: get
+query:
+    foo: bar
+    a+b: a&b
+header:
+    Content-Type: application/json
