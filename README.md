@@ -48,6 +48,28 @@ curl -XPOST -H 'Content-Type: application/json' -H 'Origin: http://example.com' 
     }' 'https://example.com/matomo.php?idsite=8876&_cvar=%7B%221%22%3A%5B%22OS%22%2C%22iphone+5.0%22%5D%2C%222%22%3A%5B%22Matomo+Mobile+Version%22%2C%221.6.2%22%5D%2C%223%22%3A%5B%22Locale%22%2C%22en%3A%3Aen%22%5D%2C%224%22%3A%5B%22Num+Accounts%22%2C%222%22%5D%7D&action_name=View+settings&url=http%3A%2F%2Fmobileapp.piwik.org%2Fwindow%2Fsettings' 
 ```
 
+## Run curl
+
+The `run-curl` switch will execute `curl` command and print the standard ouptut
+
+```sh
+postkid -run-curl examples/httpbin.yml
+{
+  "args": {
+    "a+b": "a&b", 
+    "foo": "bar"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "curl/7.66.0"
+  }, 
+  "origin": "217.30.65.6, 217.30.65.6", 
+  "url": "https://httpbin.org/get?foo=bar&a%2Bb=a%26b"
+}
+```
+
 ## License
 
 MIT
