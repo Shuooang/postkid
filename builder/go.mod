@@ -1,4 +1,4 @@
-module github.com/vyskocilm/postkid
+module github.com/vyskocilm/postkid/builder
 
 go 1.12
 
