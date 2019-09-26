@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/vyskocilm/postkid.svg?style=svg)](https://circleci.com/gh/vyskocilm/postkid) [![license](https://img.shields.io/badge/license-mit-green)](https://raw.githubusercontent.com/vyskocilm/postkid/master/LICENSE)
+
 # Postkid
 
 Small and lean commandline oriented HTTP request builder
