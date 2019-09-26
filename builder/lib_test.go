@@ -22,5 +22,22 @@ func TestCurl(t *testing.T) {
 	assert.NoError(err)
 
 	b := New(WithCurl("cURL.exe"))
-	assert.Equal("cURL.exe -XGET -H 'ham: spam' 'http://example.com/?foo=bar' ", b.Curl(&req))
+    s, err := b.Curl(&req)
+    assert.NoError(err)
+	assert.Equal(
+        "cURL.exe -XGET -H 'ham: spam' 'http://example.com/?foo=bar' ",
+        s)
+}
+
+func TestGo(t *testing.T) {
+	assert := assert.New(t)
+
+    b := New()
+    req := Request {
+        Method: "GET",
+        Query: map[string]string{"foo": "bar"},
+    }
+    s, err := b.Go(&req)
+    assert.NoError(err)
+    assert.Equal("", s)
 }
