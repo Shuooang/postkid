@@ -20,15 +20,18 @@ func init() {
 }
 
 func processFiles(files []string) {
+
+    b := builder.New()
+
 	for _, file := range files {
 		req, err := builder.ParseFile(file)
 		if err != nil {
 			log.Fatal(err)
 		}
 		if !runCurl {
-			fmt.Printf(builder.Curl(&req))
+			fmt.Printf(b.Curl(&req))
 		} else {
-			cmd := builder.CurlCmd(&req)
+			cmd := b.CurlCmd(&req)
 			var out bytes.Buffer
 			var sterr bytes.Buffer
 			cmd.Stdout = &out

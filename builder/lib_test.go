@@ -20,5 +20,7 @@ func TestMe(t *testing.T) {
 
 	req, err := ParseString(yml)
 	assert.NoError(err)
-    assert.Equal("curl -XGET -H 'ham: spam' 'http://example.com/?foo=bar' ", Curl(&req))
+
+	b := New(WithCurl("cURL.exe"))
+	assert.Equal("cURL.exe -XGET -H 'ham: spam' 'http://example.com/?foo=bar' ", b.Curl(&req))
 }

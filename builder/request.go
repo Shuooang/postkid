@@ -37,6 +37,7 @@ func (req *Request) QueryString() string {
 	return s
 }
 
+// ParseFile returns Request parsed from yaml file or error
 func ParseFile(path string) (Request, error) {
 
 	var req Request
@@ -57,15 +58,10 @@ func ParseFile(path string) (Request, error) {
 	return req, nil
 }
 
+// ParseString returns Request parsed from given string
 func ParseString(yml string) (Request, error) {
 	var req Request
-	r := strings.NewReader(yml)
-	b, err := ioutil.ReadAll(r)
-	if err != nil {
-		return req, err
-	}
-
-	err = yaml.Unmarshal(b, &req)
+    err := yaml.Unmarshal([]byte(yml), &req)
 	if err != nil {
 		return req, err
 	}

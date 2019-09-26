@@ -8,12 +8,12 @@ import (
 )
 
 // Curl return curl command line
-func Curl(req *Request) string {
+func (b *Builder) Curl(req *Request) string {
 
 	var sb strings.Builder
 
 	// curl
-	sb.WriteString("curl")
+	sb.WriteString(b.curl)
 	// ... method
 	sb.WriteString(" -X")
 	sb.WriteString(req.Method)
@@ -51,7 +51,7 @@ func Curl(req *Request) string {
 }
 
 // Curl return exec.Command with arguments for curl
-func CurlCmd(req *Request) *exec.Cmd {
+func (b *Builder) CurlCmd(req *Request) *exec.Cmd {
 
 	args := make([]string, 0)
 
@@ -79,5 +79,5 @@ func CurlCmd(req *Request) *exec.Cmd {
 	}
     args = append(args, path)
 
-    return exec.Command("curl", args...)
+    return exec.Command(b.curl, args...)
 }
