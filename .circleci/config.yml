@@ -27,9 +27,9 @@ jobs:
       - checkout
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - restore_cache: # restores saved cache if no changes are detected since last run
-      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
-        keys:
-          - v1-pkg-cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          keys:
+              - v1-pkg-cache
       # Normally, this step would be in a custom primary image;
       # we've added it here for the sake of explanation.
       - run: go mod download
@@ -39,13 +39,13 @@ jobs:
       - run: go build # pull and build dependencies for the project
 
       - save_cache: # Store cache in the /go/pkg directory
-        key: v1-pkg-cache
-        paths:
-          - "/go/pkg"
+          key: v1-pkg-cache
+          paths:
+              - "/go/pkg"
 
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-        path: /tmp/test-results
-        destination: raw-test-output
+          path: /tmp/test-results
+          destination: raw-test-output
 
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-        path: /tmp/test-results
+          path: /tmp/test-results
