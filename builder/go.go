@@ -1,7 +1,6 @@
 package builder
 
 import (
-	"os"
 	"text/template"
 )
 
@@ -12,7 +11,7 @@ type goVars struct {
 }
 
 // Go returns go snippet calling the url
-func (b *Builder) Go(req *Request) (string, error) {
+func (b *Builder) Go(req *Request) error {
 
 	const goTemplate = `
 package main
@@ -59,14 +58,14 @@ func main() {
 	// Create a new template and parse the letter into it.
 	t, err := template.New("go").Parse(goTemplate)
 
-    if err != nil {
-        return "", nil
-    }
+	if err != nil {
+		return err
+	}
 
-	err = t.Execute(os.Stdout, foo)
-    if err != nil {
-        return "", err
-    }
-    return "", nil
+	err = t.Execute(b.w, foo)
+	if err != nil {
+		return err
+	}
 
+	return nil
 }

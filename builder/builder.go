@@ -1,9 +1,15 @@
 package builder
 
+import (
+	"io"
+	"os"
+)
+
 // Builder contains all the settings and everything
 // necessary to construct the output
 type Builder struct {
-	curl string // path to curl program
+	w    io.Writer // writer to pass output to
+	curl string    // path to curl program
 }
 
 type Option func(*Builder)
@@ -11,6 +17,7 @@ type Option func(*Builder)
 // New returns an instance of a new builder
 func New(options ...Option) *Builder {
 	b := &Builder{
+		w:    os.Stdout,
 		curl: "curl",
 	}
 
@@ -19,6 +26,13 @@ func New(options ...Option) *Builder {
 	}
 
 	return b
+}
+
+// WithOutputWriter sets the writer tool will print an output into
+func WithOutputWriter(w io.Writer) Option {
+	return func(b *Builder) {
+		b.w = w
+	}
 }
 
 // WithCurl sets the path to curl

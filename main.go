@@ -29,14 +29,17 @@ func processFiles(files []string) {
 			log.Fatal(err)
 		}
 		if !runCurl {
-			fmt.Printf(b.Curl(&req))
+			b.Curl(&req)
 		} else {
-			cmd := b.CurlCmd(&req)
+			cmd, err := b.CurlCmd(&req)
+            if err != nil {
+                log.Fatal(err)
+            }
 			var out bytes.Buffer
 			var sterr bytes.Buffer
 			cmd.Stdout = &out
 			cmd.Stderr = &sterr
-			err := cmd.Run()
+			err = cmd.Run()
 			if err != nil {
                 log.Printf("curl failed, stderr:\n%s", string(sterr.Bytes()))
 				log.Fatal(err)
