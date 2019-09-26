@@ -15,7 +15,7 @@ header:
   ham: spam
 `
 
-func TestMe(t *testing.T) {
+func TestCurl(t *testing.T) {
 	assert := assert.New(t)
 
 	req, err := ParseString(yml)
