@@ -67,6 +67,7 @@ func TestGo(t *testing.T) {
 
     // XXX: this is included only to know ast test works
     if testing.Verbose() {
+        t.Logf(sb.String())
         // Print the imports from the file's AST.
         for _, s := range f.Imports {
             t.Logf(s.Path.Value)
