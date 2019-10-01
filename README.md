@@ -85,3 +85,10 @@ Well, given the scope it is not so surprising
 
 So Postkid sits in between Postman and Postwoman - small simple easy to work
 with command line tool without Electron based bells & whistles.
+
+# TODO
+
+1. fix shell quoting
+2. test generated go file
+3. support form data and multipart
+4. support some other language JS/Python/...
